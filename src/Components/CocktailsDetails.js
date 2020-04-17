@@ -2,12 +2,16 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const CocktailsDetails = () => {
   const { id } = useParams();
 
   const [cocktail, setCocktail] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
     async function cocktailProperty() {
       try {
         const res = await fetch(
@@ -17,6 +21,7 @@ const CocktailsDetails = () => {
 
         if (data.drinks) {
           setCocktail(data.drinks[0]);
+          setLoading(false);
         } else {
           setCocktail(null);
         }
@@ -41,6 +46,19 @@ const CocktailsDetails = () => {
     return (
       <div>
         <div className="container m-5 py-5">
+          <div className="row justify-content-center mx-auto">
+            {loading && (
+              <Loader
+                type="Puff"
+                color="#00BFFF"
+                height={180}
+                width={180}
+                visible={true}
+                timeout={6000}
+              />
+            )}
+            {!cocktail && !loading && <h3>No match</h3>}
+          </div>
           <div className="row">
             <div className="col-md-7">
               <img
