@@ -1,7 +1,8 @@
 import React from "react";
+import "./ComStyle.css";
+import { Link } from "react-router-dom";
 
 const SingleCocktails = ({ cocktails }) => {
-  console.log(cocktails);
   const {
     strDrinkThumb: img,
     idDrink: id,
@@ -13,7 +14,6 @@ const SingleCocktails = ({ cocktails }) => {
     strDrink: name,
     strCategory: category,
   } = cocktails;
-  console.log(img);
 
   return (
     <div
@@ -24,23 +24,24 @@ const SingleCocktails = ({ cocktails }) => {
         src={img}
         alt="Card"
         style={{ width: "100%", hight: "80%", borderRadius: "7px" }}
+        className="img img-fluid "
       />
       <div className="card-body">
         <h5 className="card-title border-bottom pb-2 ">Name : {name}</h5>
-        <p className="card-text ">
-          <p className="text-capitalize">
-            <b>category</b> : {category}
-          </p>
-          <p className="text-capitalize">
-            <b>alcoholic</b> : {alcoholic}
-          </p>
+        <p className="card-text text-capitalize">
+          <b>category</b> : {category} <br />
+          <b>alcoholic</b> : {alcoholic}
           {/* <p className="">
             {" "}
             <b>Instruction</b> : {instruction}
           </p> */}
         </p>
       </div>
-      <div className="card-footer">Details</div>
+      <div className="card-footer">
+        <Link to={`/cocktail/${id}`}>
+          <button className="btn btn-sm btn-info">Details</button>
+        </Link>
+      </div>
     </div>
   );
 };

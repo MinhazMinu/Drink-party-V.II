@@ -4,7 +4,7 @@ import SingleCocktails from "./SingleCocktails";
 const AllCocktails = () => {
   const [allCocktails, setAllCocktails] = useState(null);
   useEffect(() => {
-    fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a")
+    fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=a")
       .then((res) => res.json())
       .then((data) => setAllCocktails(data.drinks));
   }, []);

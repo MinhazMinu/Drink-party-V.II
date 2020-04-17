@@ -7,6 +7,7 @@ import AllCocktails from "./Components/AllCocktails";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./Components/About";
 import NotFound from "./Components/NotFound";
+import CocktailsDetails from "./Components/CocktailsDetails";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           <Route path="/home">
             <SearchBar />
             <AllCocktails />
+          </Route>
+          <Route path="/cocktail/:id">
+            <CocktailsDetails />
           </Route>
           <Route path="/about">
             <About />
